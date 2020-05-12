@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15.773" height="15.773" viewBox="0 0 15.773 15.773">
+  <defs>
+    <style>
+      .a3{fill:none;}
+      .b3{clip-path:url(#a3);}
+      .c3{fill:#fff;}
+    </style><clipPath id="a"><rect class="a3" width="15.773" height="15.773"/></clipPath></defs><g class="b3"><g transform="translate(238.209 -686.247) rotate(45)"><rect class="c3" width="7.794" height="2.688" transform="translate(324 658.191)"/><rect class="c3" width="14.244" height="2.688" transform="translate(331.928 646.5) rotate(90)"/></g></g></svg>
