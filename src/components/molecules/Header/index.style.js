@@ -9,7 +9,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.white,
     color: theme.palette.primary.main,
   },
   content: {

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { Div, Container, Grid, Paper, IconButton, PhotoCameraIcon, Tabs, Tab, MenuItem } from 'components'
+import { Div, Container, Grid, Paper, IconButton, PhotoCameraIcon, Tabs, Tab, MenuItem, Button } from 'components'
 import styles from './index.style'
 
-const Menu = ({ classes }) => {
+const Menu = ({ classes, profile, postRequest, tweets }) => {
   const [tabIndex, setTabIndex] = useState(0)
   const [showUpload, setShowUpload] = useState(0)
-  const [background, setBackground] = useState(null)
   const [timeoutValue, setTimeoutValue] = useState(null)
   const file = useRef(null)
 
@@ -23,16 +23,16 @@ const Menu = ({ classes }) => {
     let reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onloadend = () => {
-      setBackground(reader.result)
+      postRequest({ data: { ...profile, avatar: reader.result }, store: 'profile' })
     }
   }
 
   const styleBackground = () => {
-    if (!background) {
+    if (!profile.avatar) {
       return {}
     }
     return { 
-      backgroundImage: `url("${background}")` 
+      backgroundImage: `url("${profile.avatar}")` 
     }
   }
 
@@ -73,7 +73,7 @@ const Menu = ({ classes }) => {
               textColor="primary"
               onChange={changeTab}
             >
-              <Tab label={<MenuItem label="Tweets" value={1755} />} />
+              <Tab label={<MenuItem label="Tweets" value={tweets.length} />} />
               <Tab label={<MenuItem label="Photos/Videos" value={344} />} />
               <Tab label={<MenuItem label="Following" value={38} />} />
               <Tab label={<MenuItem label="Followers" value={89} />} />
@@ -81,7 +81,7 @@ const Menu = ({ classes }) => {
             </Tabs>
           </Grid>
           <Grid item xs={3}>
-            3
+            <Button variant="contained" color="primary" disableElevation>Following</Button>
           </Grid>
         </Grid>
       </Container>
@@ -94,6 +94,13 @@ const Menu = ({ classes }) => {
       />
     </Div>
   )
+}
+
+Menu.propTypes = {
+  classes: PropTypes.object,
+  profile: PropTypes.object,
+  postRequest: PropTypes.func,
+  tweets: PropTypes.array,
 }
 
 export default withStyles(styles)(Menu)

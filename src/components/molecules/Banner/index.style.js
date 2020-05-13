@@ -13,11 +13,11 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
   },
   divUpload: {
-    position: 'relative',
+    position: 'fixed',
     padding: '20px 30px',
   },
   buttonEdit: {
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.white,
     background: 'rgba(0, 0, 0, 0.3)',
   },
   inputFile: {
