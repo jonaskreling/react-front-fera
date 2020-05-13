@@ -11,26 +11,20 @@ export const constants = {
 
 // Action Creators
 export const actions = {
-  getRequest: ({ url, store }) => ({
+  getRequest: ({ store }) => ({
     type: constants.GET.ACTION,
-    url,
     store
   }),
-  postRequest: ({ url, data }) => ({
+  postRequest: ({ store, data }) => ({
     type: constants.POST.ACTION,
-    url,
+    store,
     data
   }),
-  putRequest: ({ url, data }) => ({
+  putRequest: ({ store, data }) => ({
     type: constants.PUT.ACTION,
-    url,
+    store,
     data
   }),
-  removeRequest: ({ url, data }) => ({
-    type: constants.REMOVE.ACTION,
-    url,
-    data
-  })
 }
 
 // Reducer
@@ -68,8 +62,14 @@ const ACTION_HANDLERS = {
   },
 
   // SAVE
-  [constants.POST.ACTION]: state => {
-    return { ...state, isLoading: true }
+  [constants.POST.ACTION]: (state, { data, store }) => {
+    return { 
+      ...state,
+      data: {
+        ...state.data,
+        [store]: data,
+      },
+    }
   },
   [constants.POST.SUCCESS]: state => {
     return { ...state, isLoading: false, showSnack: true }
@@ -86,17 +86,6 @@ const ACTION_HANDLERS = {
     return { ...state, isLoading: false, showSnack: true }
   },
   [constants.PUT.FAILED]: (state, { error }) => {
-    return { ...state, error, isLoading: false, showSnack: true }
-  },
-
-  // REMOVE
-  [constants.REMOVE.ACTION]: state => {
-    return { ...state, isLoading: true }
-  },
-  [constants.REMOVE.SUCCESS]: state => {
-    return { ...state, isLoading: false, showSnack: true }
-  },
-  [constants.REMOVE.FAILED]: (state, { error }) => {
     return { ...state, error, isLoading: false, showSnack: true }
   },
 

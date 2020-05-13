@@ -73,31 +73,7 @@ function* watchPutRequest() {
   yield takeEvery(constants.PUT.ACTION, putRequestSaga)
 }
 
-function* removeRequestSaga(action) {
-  try {
-    const response = yield call(generic.remove, action)
-    yield put({
-      type: constants.REMOVE.SUCCESS,
-      result: response.data.result
-    })
-    yield put({
-      type: constants.SNACK.ACTION
-    })
-  } catch (error) {
-    yield put({
-      type: constants.REMOVE.FAILED,
-      error: error.message || error
-    })
-    yield put({
-      type: constants.SNACK.ACTION
-    })
-  }
-}
-function* watchRemoveRequest() {
-  yield takeEvery(constants.REMOVE.ACTION, removeRequestSaga)
-}
-
 // Export the root saga by forking all available sagas.
 export function* rootSaga() {
-  yield all([fork(watchGetRequest), fork(watchPostRequest), fork(watchPutRequest), fork(watchRemoveRequest)])
+  yield all([fork(watchGetRequest), fork(watchPostRequest), fork(watchPutRequest)])
 }
