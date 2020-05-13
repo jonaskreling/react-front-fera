@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getRequest: ({ url, store }) => dispatch(genericReducer.actions.getRequest({ url, store }))
+  postRequest: ({ data, store }) => dispatch(genericReducer.actions.postRequest({ data, store }))
 })
 
 export default connect(

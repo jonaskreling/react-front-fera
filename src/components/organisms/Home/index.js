@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
-import { Loading, Banner, Menu } from 'components'
+import PropTypes from 'prop-types'
+import { Loading, Banner, Menu, ContentTwitter } from 'components'
+import profile from './profile'
 
-const Home = ({ getRequest, items }) => {
+const Home = ({ postRequest, items }) => {
 
   useEffect(() => {
-    getRequest({ url: 'prices', store: 'products' })
+    postRequest({ data: [{ message: 'Meu primeiro Tweet.', data: new Date(), profile }], store: 'tweets' })
+    postRequest({ data: profile, store: 'profile' })
   }, [])
   
   if (items.isLoading) {
@@ -14,9 +17,23 @@ const Home = ({ getRequest, items }) => {
   return (
     <>
       <Banner />
-      <Menu />
+      <Menu 
+        profile={items.data.profile}
+        postRequest={postRequest}
+        tweets={items.data.tweets}
+      />
+      <ContentTwitter 
+        tweets={items.data.tweets} 
+        profile={items.data.profile}
+        postRequest={postRequest}
+      />
     </>
   )
+}
+
+Home.propTypes = {
+  items: PropTypes.object,
+  postRequest: PropTypes.func,
 }
 
 export default Home
