@@ -2,11 +2,13 @@ export default {
   palette: {
     // https://material-ui.com/customization/themes/#palette
     primary: {
-      light: 'rgba(255,255,255,1)',
+      black: 'rgba(0, 0, 0, 1)',
+      white: 'rgba(255, 255, 255, 1)',
+      light: 'rgba(29, 161, 242, 0.12)',
       main: 'rgb(29, 161, 242)',
-      dark: '#FFF',
+      dark: '#444',
       contrastText: '#fff',
-      body: '#e9ebee',
+      body: 'rgba(29, 161, 242, 0.12)',
     },
     secondary: {
       light: '#e57373',
@@ -106,8 +108,8 @@ export default {
       lineHeight: 1.75
     },
     body2: {
-      fontWeight: 700,
-      fontSize: 14,
+      fontWeight: 400,
+      fontSize: 12,
       color: 'rgba(56, 68, 89, 0.87)',
       lineHeight: 1.75
     },
